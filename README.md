@@ -64,25 +64,38 @@ docker --version
 docker-compose --version
 ```
 
-### 5. Installer un client PostgreSQL (pgAdmin)
+### 5. Client PostgreSQL
 
-#### Option 1 : pgAdmin (recommandé)
+**Option 1 : pgAdmin via Docker (recommandé)**
 
-Téléchargez et installez pgAdmin depuis [pgadmin.org](https://www.pgadmin.org/download/)
+pgAdmin est disponible via un docker-compose séparé. Il sera accessible automatiquement après le démarrage.
 
-#### Option 2 : Autres clients
+> ⚠️ **En cas de problème avec pgAdmin** : Utilisez le fichier `docker-compose.yml` (sans pgAdmin) et installez un client externe (voir Option 2).
 
+**Option 2 : Clients externes (alternative)**
+
+Si vous préférez installer un client localement ou en cas de problème avec pgAdmin Docker :
+
+- **pgAdmin** : [pgadmin.org](https://www.pgadmin.org/download/)
 - **DBeaver** : [dbeaver.io](https://dbeaver.io/)
 - **TablePlus** : [tableplus.com](https://tableplus.com/)
 - **DataGrip** (JetBrains) : [jetbrains.com/datagrip](https://www.jetbrains.com/datagrip/)
 
 ## Démarrage de la base de données
 
-### Lancer PostgreSQL avec Docker Compose
+### Option 1 : PostgreSQL seul (recommandé si problème avec pgAdmin)
 
 ```bash
 docker-compose up -d
 ```
+
+### Option 2 : PostgreSQL + pgAdmin
+
+```bash
+docker-compose -f docker-compose-pgadmin.yml up -d
+```
+
+> 💡 **Note** : Si vous rencontrez des problèmes avec pgAdmin, utilisez l'Option 1 et installez un client externe (voir section 5).
 
 ### Initialiser le schéma et les données
 
@@ -129,17 +142,34 @@ docker-compose down -v
 
 ## Connexion avec pgAdmin
 
-1. Ouvrez pgAdmin
-2. Cliquez sur "Add New Server"
-3. Dans l'onglet "General" :
+### Si vous utilisez docker-compose-pgadmin.yml
+
+1. Accédez à pgAdmin via votre navigateur : http://localhost:5050
+2. Connectez-vous avec :
+   - Email : `admin@coda-school.com`
+   - Password : `admin`
+3. Cliquez sur "Add New Server"
+4. Dans l'onglet "General" :
    - Name : `Coda School`
-4. Dans l'onglet "Connection" :
+5. Dans l'onglet "Connection" :
+   - Host : `postgres` (nom du service dans docker-compose)
+   - Port : `5432`
+   - Database : `codaSchool`
+   - Username : `codaSchoolUser`
+   - Password : `verySecretAndSecurePassword`
+6. Cliquez sur "Save"
+
+### Si vous utilisez un client externe (pgAdmin, DBeaver, etc.)
+
+1. Ouvrez votre client PostgreSQL
+2. Créez une nouvelle connexion
+3. Paramètres de connexion :
    - Host : `localhost`
    - Port : `5432`
    - Database : `codaSchool`
    - Username : `codaSchoolUser`
    - Password : `verySecretAndSecurePassword`
-5. Cliquez sur "Save"
+4. Connectez-vous
 
 ## Commandes utiles
 
