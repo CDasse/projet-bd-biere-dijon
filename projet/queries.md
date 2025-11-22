@@ -15,20 +15,19 @@ ORDER BY prix_moyen_biere ASC;
 
 ## Bars vendant l'IPA la moins chère
 
-------`SELECT
-MIN (p.valeur) AS prix_IPA_le_plus_bas
-FROM beerproject.prix p
-INNER JOIN beerproject.biere b ON p.id_biere = b.id_biere
-WHERE b.type = 'IPA';`------ FAUX
+```
 SELECT
-b.nom AS nom_bar,
-bi.nom AS nom_biere,
-MIN (p.valeur) AS prix_IPA_le_plus_bas
+    b.nom AS nom_bar,
+    bi.nom AS nom_biere,
+    MIN (p.valeur) AS prix_IPA_le_plus_bas
 FROM beerproject.prix p
 INNER JOIN beerproject.biere bi ON p.id_biere = bi.id_biere
 INNER JOIN beerproject.bar b ON p.id_bar = b.id_bar
 WHERE bi.type = 'IPA'
-GROUP BY bi.id_biere, b.nom;
+GROUP BY bi.id_biere, b.id_bar
+ORDER BY prix_IPA_le_plus_bas ASC
+LIMIT 1;
+```
 
 ## Bières vendues dans ≥ 5 bars
 
@@ -56,6 +55,8 @@ ORDER BY b.nom;
 ```
 
 ## Top bar avec panier moyen maximum
+
+Affichage du top 3.
 
 ```
 SELECT
