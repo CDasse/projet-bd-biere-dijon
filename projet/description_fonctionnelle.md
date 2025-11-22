@@ -80,16 +80,20 @@ Une bière peut voir des prix différents en fonction du lieu de vente.
 
 ## Les règles métier
 
-* Un bar appartient à un seul quartier mais un quartier peut acceuillir plusieurs bars ;
+* Un bar appartient à un seul quartier, mais un quartier peut accueillir plusieurs bars ;
 
 * Un bar peut vendre plusieurs bières et une bière peut être vendue dans plusieurs bars ;
 
-* Un bar peut définir un prix distinct pour chaque bière mais ne peux pas définir plusieurs prix pour une même bière ;
+* Un bar peut définir un prix distinct pour chaque bière, mais ne peux pas définir plusieurs prix pour une même bière ;
 
-* Un prix et le degré d'alcool doivent être strictement positif ;
+* Un prix et le degré d'alcool doivent être strictement positifs ;
 
-* Un bar ne peut pas exister sans nom et adresse ;
+* Un bar ne peut pas exister sans nom ou adresse ;
 
 * Une bière ne peut pas exister sans nom ;
 
-* Un quartier ne peut pas exister sans nom.
+* Un quartier ne peut pas exister sans nom ;
+
+* Deux bières ne peuvent pas avoir strictement le même nom ;
+
+* Une adresse est unique à un bar.
