@@ -10,7 +10,7 @@ FROM beerproject.prix p
 INNER JOIN beerproject.bar b ON p.id_bar = b.id_bar
 INNER JOIN beerproject.quartier q ON b.id_quartier = q.id_quartier
 GROUP BY q.id_quartier
-ORDER BY prix_moyen ASC;
+ORDER BY prix_moyen_biere ASC;
 ```
 
 ## Bars vendant l'IPA la moins chère
@@ -47,7 +47,7 @@ ORDER BY nombre_de_bars ASC, bi.nom ASC;
 
 ```
 SELECT
-    b.nom AS nom_bar_prix_>=_6
+    b.nom AS nom_bar_prix_supp_6_euro
 FROM beerproject.bar b
 INNER JOIN beerproject.prix p ON b.id_bar = p.id_bar
 GROUP BY b.id_bar
