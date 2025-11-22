@@ -5,7 +5,7 @@
 ```
 SELECT
     q.nom AS nom_quartier,
-    ROUND(AVG(p.valeur),2) AS prix_moyen
+    ROUND(AVG(p.valeur),2) AS prix_moyen_biere
 FROM beerproject.prix p
 INNER JOIN beerproject.bar b ON p.id_bar = b.id_bar
 INNER JOIN beerproject.quartier q ON b.id_quartier = q.id_quartier
@@ -45,4 +45,25 @@ ORDER BY nombre_de_bars ASC, bi.nom ASC;
 
 ## Bars sans bière à moins de 6€
 
+```
+SELECT
+    b.nom AS nom_bar_prix_>=_6
+FROM beerproject.bar b
+INNER JOIN beerproject.prix p ON b.id_bar = p.id_bar
+GROUP BY b.id_bar
+HAVING MIN(p.valeur) >= 6
+ORDER BY b.nom;
+```
+
 ## Top bar avec panier moyen maximum
+
+```
+SELECT
+    b.nom AS nom_bar,
+    ROUND(AVG(p.valeur),2) AS panier_moyen
+FROM beerproject.bar b
+INNER JOIN beerproject.prix p ON b.id_bar = p.id_bar
+GROUP BY b.id_bar
+ORDER BY panier_moyen DESC
+LIMIT 3;
+```
