@@ -9,7 +9,7 @@ SELECT
 FROM beerproject.prix p
 INNER JOIN beerproject.bar b ON p.id_bar = b.id_bar
 INNER JOIN beerproject.quartier q ON b.id_quartier = q.id_quartier
-GROUP BY q.id_quartier
+GROUP BY q.nom
 ORDER BY prix_moyen_biere ASC;
 ```
 
@@ -24,7 +24,7 @@ FROM beerproject.prix p
 INNER JOIN beerproject.biere bi ON p.id_biere = bi.id_biere
 INNER JOIN beerproject.bar b ON p.id_bar = b.id_bar
 WHERE bi.type = 'IPA'
-GROUP BY bi.id_biere, b.id_bar
+GROUP BY b.nom, bi.nom
 ORDER BY prix_IPA_le_plus_bas ASC
 LIMIT 1;
 ```
@@ -36,8 +36,8 @@ SELECT
     bi.nom AS nom_biere,
     COUNT(p.id_bar) AS nombre_de_bars
 FROM beerproject.prix p
-INNER JOIN beerproject.biere bi ON bi.id_biere = p.id_biere
-GROUP BY bi.id_biere
+INNER JOIN beerproject.biere bi ON p.id_biere = bi.id_biere
+GROUP BY bi.nom
 HAVING COUNT(p.id_bar) >= 5
 ORDER BY nombre_de_bars ASC, bi.nom ASC;
 ```
@@ -46,17 +46,17 @@ ORDER BY nombre_de_bars ASC, bi.nom ASC;
 
 ```
 SELECT
-    b.nom AS nom_bar_prix_supp_6_euro
+    b.nom AS bars_prix_supp_6_euro
 FROM beerproject.bar b
 INNER JOIN beerproject.prix p ON b.id_bar = p.id_bar
-GROUP BY b.id_bar
+GROUP BY b.nom
 HAVING MIN(p.valeur) >= 6
-ORDER BY b.nom;
+ORDER BY b.nom ASC;
 ```
 
 ## Top bar avec panier moyen maximum
 
-Affichage du top 3.
+> 💡 **Important** : Affichage du top 3.
 
 ```
 SELECT
@@ -64,7 +64,7 @@ SELECT
     ROUND(AVG(p.valeur),2) AS panier_moyen
 FROM beerproject.bar b
 INNER JOIN beerproject.prix p ON b.id_bar = p.id_bar
-GROUP BY b.id_bar
+GROUP BY b.nom
 ORDER BY panier_moyen DESC
 LIMIT 3;
 ```
