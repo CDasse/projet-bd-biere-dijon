@@ -18,7 +18,7 @@ SET search_path TO beerProject;
 -- -- =========================================
 CREATE TABLE beerProject.quartier (
     id_quartier SERIAL PRIMARY KEY,
-    nom VARCHAR(255) NOT NULL
+    nom VARCHAR(255) NOT NULL UNIQUE
 );
 
 -- -- =========================================
@@ -35,8 +35,7 @@ CREATE TABLE beerProject.bar (
 -- -- =========================================
 -- -- Table Bière
 -- -- =========================================
-CREATE TABLE beerProject.biere
-(
+CREATE TABLE beerProject.biere (
     id_biere SERIAL PRIMARY KEY,
     nom      VARCHAR(100) NOT NULL UNIQUE,
     degre    NUMERIC(3, 1) CHECK (degre >= 0),

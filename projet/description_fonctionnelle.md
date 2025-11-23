@@ -86,14 +86,18 @@ Une bière peut voir des prix différents en fonction du lieu de vente.
 
 * Un bar peut définir un prix distinct pour chaque bière, mais ne peux pas définir plusieurs prix pour une même bière ;
 
-* Un prix et le degré d'alcool doivent être strictement positifs ;
+* Un prix et le degré d'alcool doivent être strictement positifs (une bière peut être sans alcool -> degré 0) ;
 
-* Un bar ne peut pas exister sans nom ou adresse ;
+* Un bar ne peut pas exister sans nom, adresse et quartier rattaché ;
+
+* Un prix ne peux pas exister sans valeur, bière rattachée et bar rattaché ;
 
 * Une bière ne peut pas exister sans nom ;
 
 * Un quartier ne peut pas exister sans nom ;
 
-* Deux bières ne peuvent pas avoir strictement le même nom ;
+* Une adresse est unique à un bar ;
 
-* Une adresse est unique à un bar.
+* Un nom est unique à un quartier ;
+
+* Un nom est unique à une bière.
