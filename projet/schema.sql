@@ -37,9 +37,9 @@ CREATE TABLE beerProject.bar (
 -- -- =========================================
 CREATE TABLE beerProject.biere (
     id_biere SERIAL PRIMARY KEY,
-    nom      VARCHAR(100) NOT NULL UNIQUE,
-    degre    NUMERIC(3, 1) CHECK (degre >= 0),
-    type     VARCHAR(100)
+    nom VARCHAR(100) NOT NULL UNIQUE,
+    degre NUMERIC(3, 1) CHECK (degre >= 0),
+    type VARCHAR(100)
 );
 
 -- -- =========================================

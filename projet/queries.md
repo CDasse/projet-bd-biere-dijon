@@ -2,7 +2,7 @@
 
 ## Prix moyen de la bière par quartier
 
-```
+```SQL
 SELECT
     q.nom AS nom_quartier,
     ROUND(AVG(p.valeur),2) AS prix_moyen_biere
@@ -15,7 +15,7 @@ ORDER BY prix_moyen_biere ASC;
 
 ## Bars vendant l'IPA la moins chère
 
-```
+```SQL
 SELECT
     b.nom AS nom_bar,
     bi.nom AS nom_biere,
@@ -31,7 +31,7 @@ LIMIT 1;
 
 ## Bières vendues dans ≥ 5 bars
 
-```
+```SQL
 SELECT
     bi.nom AS nom_biere,
     COUNT(p.id_bar) AS nombre_de_bars
@@ -44,7 +44,7 @@ ORDER BY nombre_de_bars ASC, bi.nom ASC;
 
 ## Bars sans bière à moins de 6€
 
-```
+```SQL
 SELECT
     b.nom AS bars_prix_supp_6_euro
 FROM beerproject.bar b
@@ -58,7 +58,7 @@ ORDER BY b.nom ASC;
 
 > 💡 **Important** : Affichage du top 3.
 
-```
+```SQL
 SELECT
     b.nom AS nom_bar,
     ROUND(AVG(p.valeur),2) AS panier_moyen
