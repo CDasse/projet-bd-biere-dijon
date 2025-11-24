@@ -29,10 +29,9 @@ direction TB
 		int valeur 
 	}
 
-	Quartier||--o{Bar:"1..N accueil / se trouve"
-	Bar}o--o{Bière:"N..N propose / est vendue"
-	Bière||--o{Prix:"1..N coûte"
-	Bar||--o{Prix:"1..N propose"
+    Quartier ||--o{ Bar : "1..N contient / appartient à"
+    Bar ||--o{ Prix : "1..N définit / est défini par"
+    Bière ||--o{ Prix : "1..N  est vendue à / correspond à"
 ```
 
 ## Schéma du MCD
